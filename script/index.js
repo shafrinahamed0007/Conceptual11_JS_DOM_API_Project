@@ -25,8 +25,31 @@ async function loadCategories() {
     const btn = document.createElement("button");
     btn.className = "btn bg-outline my-1 w-full";
     btn.textContent = category.category_name;
+    btn.onclick = () => selectCategory(category.id, btn);
     categoriesContainer.appendChild(btn);
   });
+}
+
+async function selectCategory(categoryId, btn) {
+  //   console.log(categoryId, btn)
+  showLoading();
+
+  const allButtons = document.querySelectorAll("#categoriesContainer button");
+  //   console.log(allButtons)
+  allButtons.forEach((btn) => {
+    btn.classList.remove("bgPrimary");
+    btn.classList.add("btn-outline");
+  });
+  btn.classList.add("bgPrimary");
+  btn.classList.remove("btn-outline");
+
+  const res = await fetch(
+    `https://openapi.programming-hero.com/api/category/${categoryId}`,
+  );
+  const data = await res.json();
+  //   console.log(data);
+  displayTress(data.plants);
+  hideLoading();
 }
 
 // loading tress data
