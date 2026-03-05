@@ -26,16 +26,39 @@
                     <button id="allTressBtn" class="btn bgPrimary my-4 w-full">All Trees</button>
 
                     <!-- Categorie Container -->
-                     <div id="categoriesContainer" class="space-y-3">
+                    <div id="categoriesContainer" class="space-y-3">
                         <!-- Categories will be dynamically loaded here by API -->
 
-                     </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Trees -->
-            <div class="bg-green-800 col-span-6">
-                Trees
+            <div class=" col-span-6">
+                <div id="treesContainer" class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    <div class="card bg-base-100  shadow-sm">
+                        <figure class="rounded-md m-4">
+                            <img  src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                                alt="Shoes" />
+                        </figure>
+                        <div class="card-body">
+                            <h2 class="card-title">Mango Tree</h2>
+                            <p class="text-left text-[10px]">A card component has a figure, a body part, and inside body
+                                there are title and actions
+                                parts</p>
+                            <div class="grid grid-cols-2 ">
+                                <div class="badge bg-[#DCFCE7] text-[#15803D] py-1 px-3">Success</div>
+                                <p class="text-right text-[#1F2937]">$5000</p>
+
+                            </div>
+                            <div class="card-actions justify-end mt-4">
+
+                                <button class="btn bgPrimary py-3 p-5 w-full rounded-4xl">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
             <!-- Cart -->
