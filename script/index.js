@@ -1,5 +1,15 @@
 const categoriesContainer = document.getElementById("categoriesContainer");
 const treesContainer = document.getElementById("treesContainer");
+const loadingSpinner = document.getElementById("loadingSpinner");
+
+function showLoading() {
+  loadingSpinner.classList.remove("hidden");
+  treesContainer.innerHTML = "";
+}
+
+function hideLoading() {
+  loadingSpinner.classList.add("hidden");
+}
 
 // load All Categoires
 async function loadCategories() {
@@ -19,14 +29,15 @@ async function loadCategories() {
   });
 }
 
-
 // loading tress data
 async function loadTress() {
+  showLoading();
+
   const res = await fetch("https://openapi.programming-hero.com/api/plants");
   const data = await res.json();
+  hideLoading();
   displayTress(data.plants);
 }
-
 
 // display trees details
 function displayTress(trees) {
@@ -53,7 +64,7 @@ function displayTress(trees) {
                         </div>
         
         `;
-        treesContainer.appendChild(card)
+    treesContainer.appendChild(card);
   });
 }
 
