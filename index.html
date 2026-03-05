@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS -DOM - API</title>
+
+    <!-- Tailwind & DaisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+    <main class="container mx-auto text-center mt-[100px]">
+        <h2 class="font-bold text-4xl primaryColor mb-5">Choose Your Trees</h2>
+        <div class="grid grid-cols-12 gap-8">
+            <!-- Categories -->
+            <div class="font-bold text-2xl col-span-3 card card-body shadow-xl ">
+                Categories
+                <div>
+                    <button id="allTressBtn" class="btn bgPrimary my-4 w-full">All Trees</button>
+
+                    <!-- Categorie Container -->
+                     <div id="categoriesContainer" class="space-y-3">
+                        <!-- Categories will be dynamically loaded here by API -->
+
+                     </div>
+                </div>
+            </div>
+
+            <!-- Trees -->
+            <div class="bg-green-800 col-span-6">
+                Trees
+            </div>
+
+            <!-- Cart -->
+            <div class="bg-yellow-800 col-span-3">
+                Cart
+            </div>
+        </div>
+    </main>
+
+
+    <script src="./script/index.js"></script>
+</body>
+
+</html>
