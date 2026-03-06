@@ -8,6 +8,7 @@ const modalCategory = document.getElementById("modalCategory");
 const modalDectription = document.getElementById("modalDescription");
 const modalPrice = document.getElementById("modalPrice");
 const modalTitle = document.getElementById("modalTitle");
+const totalPrice = document.getElementById("totalPrice");
 
 let cart = [];
 
@@ -153,7 +154,9 @@ function addToCard(id, name, price) {
 function updateCart() {
   cartContainer.innerHTML = "";
   // console.log(cart);
+  let total = 0;
   cart.forEach((item) => {
+    total += item.price * item.quantity;
     const cartItem = document.createElement("div");
     cartItem.className = "card card-body bg-gray-100";
     cartItem.innerHTML = `
@@ -173,16 +176,15 @@ function updateCart() {
     `;
     cartContainer.appendChild(cartItem);
   });
+  totalPrice.innerText = total;
 }
 
-function removeFromCart(treeId){
+function removeFromCart(treeId) {
   // console.log(treeId)
-  const updatedCartElements = cart.filter(item => item.id != treeId);
+  const updatedCartElements = cart.filter((item) => item.id != treeId);
   // console.log(updatedCartElements)
   cart = updatedCartElements;
   updateCart();
-
-
 }
 
 loadCategories();
