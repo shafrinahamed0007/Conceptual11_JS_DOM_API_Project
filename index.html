@@ -12,6 +12,11 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="index.css">
+
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -22,7 +27,7 @@
             <!-- Categories -->
             <div class="font-bold text-2xl col-span-3 card card-body shadow-xl ">
                 Categories
-                <div>
+                <div class="sticky top-8">
                     <button id="allTressBtn" class="btn bgPrimary my-4 w-full">All Trees</button>
 
                     <!-- Categorie Container -->
@@ -34,7 +39,7 @@
             </div>
 
             <!-- Trees -->
-            <div class="col-span-6 ">
+            <div class="col-span-6  ">
                 <div id="treesContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
 
 
@@ -49,11 +54,46 @@
 
 
             <!-- Cart -->
-            <div class="bg-yellow-800 col-span-3">
+            <div class="bg-yellow-800 col-span-3 ">
                 Cart
             </div>
         </div>
     </main>
+
+    <!-- Product Details Modal -->
+    <!-- Open the modal using ID.showModal() method -->
+    <button class="btn" onclick="tree_details_modal.showModal()">open modal</button>
+    <dialog id="tree_details_modal" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+            <!-- Modal Header with close Button -->
+            <div class="flex justify-between items-start mb-4">
+                <h3 id="modalTitle" class="font-bold text-2xl text-green-700">Tree Details</h3>
+                <button class="btn btn-sm btn-circle btn-ghost" onclick="document.getElementById('tree_details_modal').close()"><i class="fa-solid fa-x"></i></button>
+            </div>
+
+            <!-- Modal Content -->
+             <div class="gap-6">
+                <!-- Plant Image -->
+                 <img id="modalImage" src="" alt="plat" class="w-full !h-[250px] object-cover rounded-lg mb-12">
+             </div>
+
+             <div class="">
+                <p class="text-sm text-gray-500 mb-2">
+                    <span class="font-bold">Category:</span>
+                    <span id="modalCategory"></span>
+                </p>
+                <p class="text-sm text-gray-600 mb-4">
+                    <span id="modalDescription"></span>
+                </p>
+                <div class="flex items-baseline gap-2 mb-6">
+                    <span class="text-3xl font-bold text-green-600">৳<span id="modalPrice">0</span></span>
+                </div>
+                
+             </div>
+
+            
+        </div>
+    </dialog>
 
 
     <script src="./script/index.js"></script>
