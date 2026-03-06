@@ -9,6 +9,8 @@ const modalDectription = document.getElementById("modalDescription");
 const modalPrice = document.getElementById("modalPrice");
 const modalTitle = document.getElementById("modalTitle");
 
+let cart = [];
+
 function showLoading() {
   loadingSpinner.classList.remove("hidden");
   treesContainer.innerHTML = "";
@@ -102,12 +104,12 @@ function displayTress(trees) {
                             <p class="text-left text-[12px] line-clamp-2">${tree.description}</p>
                             <div class="grid grid-cols-2 ">
                                 <div class="badge bg-[#DCFCE7] text-[#15803D] py-1 px-3 ">${tree.category}</div>
-                                <p class="text-right text-[#1F2937]">৳{tree.price}</p>
+                                <p class="text-right text-[#1F2937]">৳${tree.price}</p>
 
                             </div>
                             <div class="card-actions justify-end mt-4">
 
-                                <button class="btn bgPrimary py-3 p-5 w-full rounded-4xl">Add To Cart</button>
+                                <button class="btn bgPrimary py-3 p-5 w-full rounded-4xl" onclick = "addToCard(${tree.id}, '${tree.name}', ${tree.price})">Add To Cart</button>
                             </div>
                         </div>
         
@@ -130,6 +132,57 @@ async function openTreeModal(treeId) {
   modalDectription.textContent = plantsDetails.description;
   modalCategory.textContent = plantsDetails.category;
   modalPrice.textContent = plantsDetails.price;
+}
+
+function addToCard(id, name, price) {
+  // console.log(id, name, price);
+  const existingItem = cart.find((item) => item.id === id);
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push({
+      id,
+      name,
+      price,
+      quantity: 1,
+    });
+  }
+  updateCart();
+}
+
+function updateCart() {
+  cartContainer.innerHTML = "";
+  // console.log(cart);
+  cart.forEach((item) => {
+    const cartItem = document.createElement("div");
+    cartItem.className = "card card-body bg-gray-100";
+    cartItem.innerHTML = `
+    <div class="card card-body shadow-2xl">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h2>${item.name}</h2>
+                                    <p>৳${item.price} * ${item.quantity}</p>
+                                </div>
+                                <button onclick="removeFromCart(${item.id})" class="btn btn-ghost"><i class="fa-solid fa-x"></i></button>
+                            </div>
+                            <p class="text-right font-semibold text-xl">৳${item.price} * ${item.quantity}</p>
+
+                        </div>
+                      
+    
+    `;
+    cartContainer.appendChild(cartItem);
+  });
+}
+
+function removeFromCart(treeId){
+  // console.log(treeId)
+  const updatedCartElements = cart.filter(item => item.id != treeId);
+  // console.log(updatedCartElements)
+  cart = updatedCartElements;
+  updateCart();
+
+
 }
 
 loadCategories();
